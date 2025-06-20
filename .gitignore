@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.ipynb_checkpoints
+
+# Data
+*.npy
+*.mat
+*.h5
+*.csv
+*.pth
+*.pt
+
+# Virtual Environment
+.venv/
+env/
+venv/
+
+# Other
+.DS_Store
+*.log
