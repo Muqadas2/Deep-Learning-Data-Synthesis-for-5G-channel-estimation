@@ -1,0 +1,14 @@
+
+--- Training Run: 2025-06-23 13:17:18 ---
+Model: CNN_OptimC_Depthwise_ResMix
+Epochs: 20
+Learning Rate: 0.001
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.128308
+Val Loss: 0.491304
+Early Stopping Triggered: Yes
+Total Trainable Parameters: 111
+Avg Inference Time per Sample: 0.002670 sec
+Model Saved At: results\CNN_OptimC_Depthwise_ResMix\CNN_OptimC_Depthwise_ResMix_model.pth
+--------------------------------------------------

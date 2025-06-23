@@ -1,0 +1,14 @@
+
+--- Training Run: 2025-06-23 12:16:17 ---
+Model: CNN_Original
+Epochs: 10
+Learning Rate: 0.0003
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.083970
+Val Loss: 0.038218
+Early Stopping Triggered: No
+Total Trainable Parameters: 745
+Avg Inference Time per Sample: 0.005596 sec
+Model Saved At: results\CNN_Original\CNN_Original_model.pth
+--------------------------------------------------

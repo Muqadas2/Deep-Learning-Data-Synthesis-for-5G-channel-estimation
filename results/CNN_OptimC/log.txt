@@ -1,0 +1,14 @@
+
+--- Training Run: 2025-06-23 12:34:39 ---
+Model: CNN_OptimC
+Epochs: 20
+Learning Rate: 0.001
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.094110
+Val Loss: 0.045832
+Early Stopping Triggered: Yes
+Total Trainable Parameters: 151
+Avg Inference Time per Sample: 0.001178 sec
+Model Saved At: results\CNN_OptimC\CNN_OptimC_model.pth
+--------------------------------------------------

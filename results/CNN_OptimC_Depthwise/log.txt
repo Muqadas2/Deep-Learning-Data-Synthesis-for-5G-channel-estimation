@@ -1,0 +1,14 @@
+
+--- Training Run: 2025-06-23 12:36:35 ---
+Model: CNN_OptimC_Depthwise
+Epochs: 20
+Learning Rate: 0.002
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.107253
+Val Loss: 0.692568
+Early Stopping Triggered: Yes
+Total Trainable Parameters: 93
+Avg Inference Time per Sample: 0.002933 sec
+Model Saved At: results\CNN_OptimC_Depthwise\CNN_OptimC_Depthwise_model.pth
+--------------------------------------------------
