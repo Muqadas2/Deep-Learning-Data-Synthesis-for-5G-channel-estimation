@@ -22,7 +22,7 @@ all_model_classes = [
     # CNN_OptimC_Depthwise,
     # CNN_OptimC_Depthwise_ResMix,
     # CNN_OptimC_2,
-    Hybrid_CNN_Transformer_TF
+    Hybrid_CNN_Transformer_TF,
 ]
 
 # Load test data
@@ -48,7 +48,8 @@ with open(csv_path, mode="a", newline="") as f:
 
     for ModelClass in all_model_classes:
         model = ModelClass()
-        model_name = model.__class__.__name__
+        # model_name = model.__class__.__name__
+        model_name = ModelClass.__name__
         model_path = os.path.join("checkpoints", f"{model_name}.keras")
 
         if not os.path.exists(model_path):
