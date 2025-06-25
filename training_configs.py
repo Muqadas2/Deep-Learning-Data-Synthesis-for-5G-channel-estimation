@@ -1,4 +1,4 @@
-# train_configs.py
+# train_configs_tf.py
 
 def get_config(name):
     configs = {
@@ -45,6 +45,6 @@ def get_config(name):
                 "gamma": 0.5
             }
         }
-        # Add more configs here...
+        # Extend with more configs if needed
     }
     return configs[name]

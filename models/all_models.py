@@ -1,223 +1,177 @@
-import torch
-import torch.nn as nn
+# models_tf/all_models.py
+import tensorflow as tf
+from tensorflow.keras import layers, Sequential, Model
+
+def conv_bn_relu(in_c, out_c, kernel_size=3, padding='same', dilation=1):
+    return Sequential([
+        layers.Conv2D(out_c, kernel_size, padding=padding, dilation_rate=dilation),
+        layers.BatchNormalization(),
+        layers.ReLU()
+    ])
+
+def conv_bn_silu(in_c, out_c, kernel_size=3, padding='same', dilation=1):
+    return Sequential([
+        layers.Conv2D(out_c, kernel_size, padding=padding, dilation_rate=dilation),
+        layers.BatchNormalization(),
+        layers.Activation('swish')
+    ])
+
+def depthwise_block(in_ch, out_ch, kernel_size=3, padding='same', dilation=1):
+    return Sequential([
+        layers.DepthwiseConv2D(kernel_size, padding=padding, dilation_rate=dilation),
+        layers.ReLU(),
+        layers.Conv2D(out_ch, kernel_size=1),
+        layers.BatchNormalization(),
+        layers.ReLU()
+    ])
 
 
-def conv_bn_relu(in_channels, out_channels, kernel_size=3, padding=1, dilation=1):
-    return nn.Sequential(
-        nn.Conv2d(in_channels, out_channels, kernel_size, padding=padding, dilation=dilation),
-        nn.BatchNorm2d(out_channels),
-        nn.ReLU()
-    )
-def depthwise_block(in_ch, out_ch, kernel_size=3, padding=1, dilation=1):
-    return nn.Sequential(
-        nn.Conv2d(in_ch, in_ch, kernel_size=kernel_size, padding=padding, dilation=dilation, groups=in_ch),
-        nn.ReLU(),
-        nn.Conv2d(in_ch, out_ch, kernel_size=1),
-        nn.BatchNorm2d(out_ch),
-        nn.ReLU()
-    )
+def CNN_Original():
+    return Sequential([
+        layers.Conv2D(2, 9, padding='same', input_shape=(612, 14, 1)),
+        layers.ReLU(),
+        layers.Conv2D(2, 9, padding='same'),
+        layers.ReLU(),
+        layers.Conv2D(2, 5, padding='same'),
+        layers.ReLU(),
+        layers.Conv2D(2, 5, padding='same'),
+        layers.ReLU(),
+        layers.Conv2D(1, 5, padding='same')
+    ])
 
-def conv_bn_silu(in_c, out_c, kernel_size=3, stride=1, padding=1, dilation=1):
-    return nn.Sequential(
-        nn.Conv2d(in_c, out_c, kernel_size, stride, padding, dilation),
-        nn.BatchNorm2d(out_c),
-        nn.SiLU()
-    )
+def CNN_Optim():
+    return Sequential([
+        layers.Input(shape=(612, 14, 1)),
+        conv_bn_relu(1, 4),
+        layers.Conv2D(4, 3, padding='same'),
+        layers.ReLU(),
+        conv_bn_relu(4, 4),
+        layers.Conv2D(4, 3, padding='same'),
+        layers.ReLU(),
+        layers.Conv2D(1, 1)
+    ])
 
+def CNN_Merged():
+    return Sequential([
+        layers.Input(shape=(612, 14, 1)),
+        conv_bn_relu(1, 8, kernel_size=5),
+        conv_bn_relu(8, 8, kernel_size=5),
+        layers.Conv2D(1, 1)
+    ])
 
-class CNN_Original(nn.Module):
-    """Basic CNN from original layers"""
-    def __init__(self):
-        super().__init__()
-        self.model = nn.Sequential(
-            nn.Conv2d(1, 2, kernel_size=9, padding=4),
-            nn.ReLU(),
-            nn.Conv2d(2, 2, kernel_size=9, padding=4),
-            nn.ReLU(),
-            nn.Conv2d(2, 2, kernel_size=5, padding=2),
-            nn.ReLU(),
-            nn.Conv2d(2, 2, kernel_size=5, padding=2),
-            nn.ReLU(),
-            nn.Conv2d(2, 1, kernel_size=5, padding=2)
-        )
+def CNN_Depthwise():
+    return Sequential([
+        layers.Input(shape=(612, 14, 1)),
+        depthwise_block(1, 4),
+        depthwise_block(4, 4),
+        depthwise_block(4, 4),
+        depthwise_block(4, 4),
+        layers.Conv2D(1, 1)
+    ])
 
-    def forward(self, x):
-        return self.model(x)
+def CNN_OptimDilation():
+    return Sequential([
+        layers.Input(shape=(612, 14, 1)),
+        conv_bn_relu(1, 4),
+        layers.Conv2D(4, 3, padding='same'),
+        layers.ReLU(),
+        conv_bn_relu(4, 4),
+        layers.Conv2D(1, 1)
+    ])
 
+def CNN_OptimA():
+    return Sequential([
+        layers.Input(shape=(612, 14, 1)),
+        conv_bn_relu(1, 4, dilation=2),
+        layers.Conv2D(4, 3, padding='same'),
+        layers.ReLU(),
+        conv_bn_relu(4, 4),
+        layers.Conv2D(1, 1)
+    ])
 
-class CNN_Optim(nn.Module):
-    """Optimized CNN with 4-channel layers and BatchNorm"""
-    def __init__(self):
-        super().__init__()
-        self.model = nn.Sequential(
-            conv_bn_relu(1, 4),
-            nn.Conv2d(4, 4, kernel_size=3, padding=1),
-            nn.ReLU(),
-            conv_bn_relu(4, 4),
-            nn.Conv2d(4, 4, kernel_size=3, padding=1),
-            nn.ReLU(),
-            nn.Conv2d(4, 1, kernel_size=1)
-        )
+def CNN_OptimB():
+    return Sequential([
+        layers.Input(shape=(612, 14, 1)),
+        conv_bn_relu(1, 4, dilation=2),
+        layers.Conv2D(2, 3, padding='same'),
+        layers.ReLU(),
+        conv_bn_relu(2, 4),
+        layers.Conv2D(1, 1)
+    ])
 
-    def forward(self, x):
-        return self.model(x)
-
-
-class CNN_Merged(nn.Module):
-    """Merged model with 5x5 filters and final projection"""
-    def __init__(self):
-        super().__init__()
-        self.model = nn.Sequential(
-            conv_bn_relu(1, 8, kernel_size=5, padding=2),
-            conv_bn_relu(8, 8, kernel_size=5, padding=2),
-            nn.Conv2d(8, 1, kernel_size=1)
-        )
-
-    def forward(self, x):
-        return self.model(x)
-
-
-class CNN_Depthwise(nn.Module):
-    """Depthwise Separable CNN"""
-    def __init__(self):
-        super().__init__()
-
-        def depthwise_block(in_ch, out_ch):
-            return nn.Sequential(
-                nn.Conv2d(in_ch, in_ch, kernel_size=3, padding=1, groups=in_ch),
-                nn.ReLU(),
-                nn.Conv2d(in_ch, out_ch, kernel_size=1),
-                nn.BatchNorm2d(out_ch),
-                nn.ReLU()
-            )
-
-        self.model = nn.Sequential(
-            depthwise_block(1, 4),
-            depthwise_block(4, 4),
-            depthwise_block(4, 4),
-            depthwise_block(4, 4),
-            nn.Conv2d(4, 1, kernel_size=1)
-        )
-
-    def forward(self, x):
-        return self.model(x)
+def CNN_OptimC():
+    return Sequential([
+        layers.Input(shape=(612, 14, 1)),
+        conv_bn_relu(1, 2, dilation=2),
+        layers.Conv2D(2, 3, padding='same', dilation_rate=2),
+        layers.ReLU(),
+        conv_bn_relu(2, 4),
+        layers.Conv2D(1, 1)
+    ])
 
 
-class CNN_OptimDilation(nn.Module):
-    """CNN with BatchNorm and no dilation"""
-    def __init__(self):
-        super().__init__()
-        self.model = nn.Sequential(
-            conv_bn_relu(1, 4),
-            nn.Conv2d(4, 4, kernel_size=3, padding=1),
-            nn.ReLU(),
-            conv_bn_relu(4, 4),
-            nn.Conv2d(4, 1, kernel_size=1)
-        )
 
-    def forward(self, x):
-        return self.model(x)
+def Hybrid_CNN_Transformer_TF():
+    input_layer = layers.Input(shape=(612, 14, 1))
 
-
-class CNN_OptimA(nn.Module):
-    """Dilation only in first layer"""
-    def __init__(self):
-        super().__init__()
-        self.model = nn.Sequential(
-            conv_bn_relu(1, 4, dilation=2, padding=2),
-            nn.Conv2d(4, 4, kernel_size=3, padding=1),
-            nn.ReLU(),
-            conv_bn_relu(4, 4),
-            nn.Conv2d(4, 1, kernel_size=1)
-        )
-
-    def forward(self, x):
-        return self.model(x)
+    # CNN Feature Extractor (same as CNN_OptimC)
+    x = layers.Conv2D(2, 3, padding='same', dilation_rate=2)(input_layer)
+    x = layers.BatchNormalization()(x)
+    x = layers.ReLU()(x)
+    x = layers.Conv2D(2, 3, padding='same', dilation_rate=2)(x)
+    x = layers.ReLU()(x)
+    x = layers.Conv2D(4, 3, padding='same')(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.ReLU()(x)
 
 
-class CNN_OptimB(nn.Module):
-    """Dilation + channel change + BN"""
-    def __init__(self):
-        super().__init__()
-        self.model = nn.Sequential(
-            conv_bn_relu(1, 4, dilation=2, padding=2),
-            nn.Conv2d(4, 2, kernel_size=3, padding=1),
-            nn.ReLU(),
-            conv_bn_relu(2, 4),
-            nn.Conv2d(4, 1, kernel_size=1)
-        )
+    # Flatten spatial dims into tokens (B, tokens, C)
+    H, W, C = x.shape[1], x.shape[2], x.shape[3]
+    x = layers.Reshape((H * W, C))(x)  # Flatten spatial dims: (B, tokens, C)
 
-    def forward(self, x):
-        return self.model(x)
+    # Lightweight Transformer Block
+    attn_out = layers.MultiHeadAttention(num_heads=2, key_dim=C)(x, x)
+    x = layers.Add()([x, attn_out])
+    x = layers.LayerNormalization()(x)
+
+    ffn = layers.Dense(2 * C, activation='relu')(x)
+    ffn = layers.Dense(C)(ffn)
+    x = layers.Add()([x, ffn])
+    x = layers.LayerNormalization()(x)
+
+    # Restore spatial layout
+    x = layers.Reshape((H, W, C))(x)
+    output = layers.Conv2D(1, 1)(x)
+
+    return Model(inputs=input_layer, outputs=output)
 
 
-class CNN_OptimC(nn.Module):
-    """Double Dilation + Channel Expand"""
-    def __init__(self):
-        super().__init__()
-        self.model = nn.Sequential(
-            conv_bn_relu(1, 2, dilation=2, padding=2),
-            nn.Conv2d(2, 2, kernel_size=3, padding=2, dilation=2),
-            nn.ReLU(),
-            conv_bn_relu(2, 4),
-            nn.Conv2d(4, 1, kernel_size=1)
-        )
 
-    def forward(self, x):
-        return self.model(x)
-    
-class CNN_OptimC_2(nn.Module):
-    """Double Dilation + Channel Expand with InstanceNorm and SiLU"""
-    def __init__(self):
-        super().__init__()
-        self.model = nn.Sequential(
-            conv_bn_silu(1, 2, dilation=2, padding=2),              # (0)
-            nn.Conv2d(2, 2, kernel_size=3, padding=2, dilation=2),  # (1)
-            nn.SiLU(),                                              # (2)
-            conv_bn_silu(2, 4),                                     # (3)
-            nn.Conv2d(4, 1, kernel_size=1)                          # (4)
-        )
+def CNN_OptimC_2():
+    return Sequential([
+        layers.Input(shape=(612, 14, 1)),
+        conv_bn_silu(1, 2, dilation=2),
+        layers.Conv2D(2, 3, padding='same', dilation_rate=2),
+        layers.Activation('swish'),
+        conv_bn_silu(2, 4),
+        layers.Conv2D(1, 1)
+    ])
 
-    def forward(self, x):
-        return self.model(x)
+def CNN_OptimC_Depthwise():
+    return Sequential([
+        layers.Input(shape=(612, 14, 1)),
+        depthwise_block(1, 2, dilation=2),
+        depthwise_block(2, 2, dilation=2),
+        depthwise_block(2, 4),
+        layers.Conv2D(1, 1)
+    ])
 
-class CNN_OptimC_Depthwise(nn.Module):
-    """
-    OptimC with Depthwise Separable Convolutions + Dilation
-    Replaces all standard convs with depthwise + pointwise
-    """
-    def __init__(self):
-        super().__init__()
-        self.model = nn.Sequential(
-            depthwise_block(1, 2, dilation=2, padding=2),   # Input: 1 → 2
-            depthwise_block(2, 2, dilation=2, padding=2),   # 2 → 2
-            depthwise_block(2, 4),                          # 2 → 4
-            nn.Conv2d(4, 1, kernel_size=1)                  # Final projection: 4 → 1
-        )
-
-    def forward(self, x):
-        return self.model(x)
-
-class CNN_OptimC_Depthwise_ResMix(nn.Module):
-    """
-    Updated OptimC-Depthwise: no dilation, residual + depthwise + standard conv mix
-    """
-    def __init__(self):
-        super().__init__()
-        
-        self.block1 = depthwise_block(1, 2)               # 1 → 2
-        self.block2 = conv_bn_relu(2, 2)                  # standard conv
-        self.block3 = depthwise_block(2, 4)               # 2 → 4
-
-        self.project_res = nn.Conv2d(2, 2, kernel_size=1) # for residual match
-
-        self.final_conv = nn.Conv2d(4, 1, kernel_size=1)  # 4 → 1
-
-    def forward(self, x):
-        out1 = self.block1(x)               # (1 → 2)
-        out2 = self.block2(out1)            # standard conv
-        res = self.project_res(out1)        # match shape
-        out2 = out2 + res                   # add residual connection
-        out3 = self.block3(out2)            # (2 → 4)
-        out = self.final_conv(out3)         # (4 → 1)
-        return out
+def CNN_OptimC_Depthwise_ResMix():
+    input_layer = layers.Input(shape=(612, 14, 1))
+    x1 = depthwise_block(1, 2)(input_layer)
+    x2 = conv_bn_relu(2, 2)(x1)
+    res = layers.Conv2D(2, 1)(x1)
+    x = layers.add([x2, res])
+    x = depthwise_block(2, 4)(x)
+    output_layer = layers.Conv2D(1, 1)(x)
+    return tf.keras.Model(inputs=input_layer, outputs=output_layer)
