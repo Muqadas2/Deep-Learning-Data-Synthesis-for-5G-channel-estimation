@@ -1,16 +1,16 @@
-# main.py
-import torch
-import time
-from dataset import ChannelDataset
-from train import train
-from torch.utils.data import DataLoader
-from training_configs import get_config
+# main_tf.py
 import os
-from models.all_models import CNN_Original, CNN_Optim, CNN_Merged, CNN_Depthwise, \
-                              CNN_OptimDilation, CNN_OptimA, CNN_OptimB, CNN_OptimC, CNN_OptimC_Depthwise, CNN_OptimC_Depthwise_ResMix, CNN_OptimC_2
-from models.model_optimC import ChannelEstimationCNN
+import time
+import numpy as np
+import tensorflow as tf
+from dataset import load_channel_dataset
+from train import train
 from training_configs import get_config
+from models.all_models import CNN_Original, CNN_Optim, CNN_Merged, CNN_Depthwise, \
+                                  CNN_OptimDilation, CNN_OptimA, CNN_OptimB, CNN_OptimC, \
+                                  CNN_OptimC_Depthwise, CNN_OptimC_Depthwise_ResMix, CNN_OptimC_2, Hybrid_CNN_Transformer_TF
 
+# List of model classes
 all_model_classes = [
     # CNN_Original,
     # CNN_Optim,
@@ -22,64 +22,79 @@ all_model_classes = [
     # CNN_OptimC,
     # CNN_OptimC_Depthwise,
     # CNN_OptimC_Depthwise_ResMix,
-    # ChannelEstimationCNN,
-    CNN_OptimC_2,
+    # CNN_OptimC_2,
+    Hybrid_CNN_Transformer_TF
 ]
 
-
 # Load data
-train_ds = ChannelDataset("data/my_trainData.npy", "data/my_trainLabels.npy")
-val_ds = ChannelDataset("data/my_valData.npy", "data/my_valLabels.npy")
+train_dataset = load_channel_dataset("data/tf_trainData.npy", "data/tf_trainLabels.npy", batch_size=8, shuffle=True)
+val_dataset   = load_channel_dataset("data/tf_valData.npy", "data/tf_valLabels.npy", batch_size=8, shuffle=False)
 
-train_loader = DataLoader(train_ds, batch_size=8, shuffle=True)
-val_loader = DataLoader(val_ds, batch_size=8)
-
-# Set device
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"Using device: {device}")
+# Device info
+physical_devices = tf.config.list_physical_devices('GPU')
+print(f"Using device: {'GPU' if physical_devices else 'CPU'}")
 
 for ModelClass in all_model_classes:
-    model = ModelClass()
-    model_name = model.__class__.__name__
+    # Correctly get the model name from the class
+    model_name = ModelClass.__name__
 
-    # Map model name to config type
+    # Instantiate the model
+    model = ModelClass()
+
+    # Match config
     if model_name == "CNN_Original":
         config_name = "base"
     elif model_name == "CNN_Merged":
         config_name = "merged"
-    elif model_name == "CNN_Depthwise" or model_name.endswith("Depthwise"):
+    elif "Depthwise" in model_name:
         config_name = "depthwise"
     else:
         config_name = "optim"
 
     config = get_config(config_name)
 
-    # Estimate inference time per sample
-    dummy_input = next(iter(train_loader))[0].to(device)
-    with torch.no_grad():
-        start = time.time()
-        _ = model(dummy_input)
-        end = time.time()
-    avg_time_per_sample = (end - start) / dummy_input.size(0)
+    # Estimate inference time
+    dummy_input = np.random.randn(1, 612, 14, 1).astype(np.float32)
+    start = time.time()
+    _ = model(dummy_input)
+    end = time.time()
+    avg_time_per_sample = (end - start)
 
-    # Count trainable parameters
-    total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    total_params = model.count_params()
 
     print(f"\nTraining {model_name} with config: {config}")
     train(
-        model=model,
-        train_loader=train_loader,
-        val_loader=val_loader,
-        epochs=config["epochs"],
-        lr=config["lr"],
-        patience=config["patience"],
-        val_freq=config["val_freq"],
-        avg_time_per_sample=avg_time_per_sample,
-        total_params=total_params,
-        device=device
+    model=model,
+    model_name=model_name,
+    train_dataset=train_dataset,
+    val_dataset=val_dataset,
+    epochs=config["epochs"],
+    lr=config["lr"],
+    patience=config["patience"],
+    val_freq=config["val_freq"],
+    avg_time_per_sample=avg_time_per_sample,
+    total_params=total_params
     )
 
+
+    # Create necessary directories
     os.makedirs("checkpoints", exist_ok=True)
-    save_path = os.path.join("checkpoints", f"{model_name}.pth")
-    torch.save(model.state_dict(), save_path)
-    print(f"Model saved to: {save_path}")
+    output_dir = os.path.join("results", model_name)
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Save in .keras format
+    keras_path_ckpt = os.path.join("checkpoints", f"{model_name}.keras")
+    keras_path_out = os.path.join(output_dir, f"{model_name}_model.keras")
+    model.save(keras_path_ckpt)
+    model.save(keras_path_out)
+
+    # Save in SavedModel format
+    savedmodel_dir = os.path.join("checkpoints", f"{model_name}_SavedModel")
+    model.export(savedmodel_dir)
+
+    print(f" Model saved successfully!")
+    print(f"- Native Keras checkpoint: {keras_path_ckpt}")
+    print(f"- Keras copy in results:   {keras_path_out}")
+    print(f"- TensorFlow SavedModel:   {savedmodel_dir}")
+    print(f"- Total parameters:        {total_params}")
+    print(f"- Avg inference time:      {avg_time_per_sample:.6f} seconds\n")

@@ -1,28 +1,14 @@
 
---- Training Run: 2025-06-23 13:50:35 ---
+--- Training Run: 2025-06-23 18:20:35 ---
 Model: CNN_OptimC_2
 Epochs: 20
 Learning Rate: 0.001
 Patience: 5
 Validation Frequency: 1
-Train Loss: 0.318651
-Val Loss: 0.356071
-Early Stopping Triggered: No
-Total Trainable Parameters: 139
-Avg Inference Time per Sample: 0.004201 sec
-Model Saved At: results\CNN_OptimC_2\CNN_OptimC_2_model.pth
---------------------------------------------------
-
---- Training Run: 2025-06-23 13:55:29 ---
-Model: CNN_OptimC_2
-Epochs: 20
-Learning Rate: 0.001
-Patience: 5
-Validation Frequency: 1
-Train Loss: 0.093139
-Val Loss: 0.046200
+Train Loss: 0.093469
+Val Loss: 0.046278
 Early Stopping Triggered: Yes
-Total Trainable Parameters: 151
-Avg Inference Time per Sample: 0.001415 sec
-Model Saved At: results\CNN_OptimC_2\CNN_OptimC_2_model.pth
+Total Trainable Parameters: 163
+Avg Inference Time per Sample: 0.031920 sec
+Model Saved At: results\CNN_OptimC_2\CNN_OptimC_2_model.keras
 --------------------------------------------------

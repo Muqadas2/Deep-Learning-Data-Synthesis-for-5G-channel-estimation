@@ -1,14 +1,14 @@
 
---- Training Run: 2025-06-23 12:22:18 ---
+--- Training Run: 2025-06-23 18:10:17 ---
 Model: CNN_Merged
 Epochs: 30
 Learning Rate: 0.0005
 Patience: 7
 Validation Frequency: 5
-Train Loss: 0.065294
-Val Loss: 0.040973
-Early Stopping Triggered: No
-Total Trainable Parameters: 1857
-Avg Inference Time per Sample: 0.002222 sec
-Model Saved At: results\CNN_Merged\CNN_Merged_model.pth
+Train Loss: 0.075650
+Val Loss: 0.046460
+Early Stopping Triggered: Yes
+Total Trainable Parameters: 1889
+Avg Inference Time per Sample: 0.011115 sec
+Model Saved At: results\CNN_Merged\CNN_Merged_model.keras
 --------------------------------------------------
