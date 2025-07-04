@@ -33,5 +33,7 @@ venv/
 # Ignore checkpoints and saved models
 checkpoints/
 results/*_SavedModel/
+results_1/
+onnx_exports_1/
 __pycache__/
 *.log
