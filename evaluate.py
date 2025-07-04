@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import csv
 from datetime import datetime
 from models.all_models import CNN_Original, CNN_Optim, CNN_Merged, CNN_Depthwise, \
-                                  CNN_OptimDilation, CNN_OptimA, CNN_OptimB, CNN_OptimC, CNN_OptimC_Depthwise, CNN_OptimC_Depthwise_ResMix, CNN_OptimC_2, Hybrid_CNN_Transformer_TF, Lightweight_DNN_CIR
+                                  CNN_OptimDilation, CNN_OptimA, CNN_OptimB, CNN_OptimC, CNN_OptimC_Depthwise, CNN_OptimC_Depthwise_ResMix, CNN_OptimC_2, Hybrid_CNN_Transformer_TF
 
 # List of model classes
 all_model_classes = [
@@ -23,7 +23,7 @@ all_model_classes = [
     CNN_OptimC_Depthwise_ResMix,
     CNN_OptimC_2,
     Hybrid_CNN_Transformer_TF,
-    Lightweight_DNN_CIR
+    # Lightweight_DNN_CIR
 ]
 
 # Load test data
