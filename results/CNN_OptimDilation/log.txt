@@ -1,0 +1,14 @@
+
+--- Training Run: 2025-06-23 18:11:46 ---
+Model: CNN_OptimDilation
+Epochs: 20
+Learning Rate: 0.001
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.103516
+Val Loss: 0.068443
+Early Stopping Triggered: No
+Total Trainable Parameters: 373
+Avg Inference Time per Sample: 0.009998 sec
+Model Saved At: results\CNN_OptimDilation\CNN_OptimDilation_model.keras
+--------------------------------------------------

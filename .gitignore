@@ -21,3 +21,17 @@ venv/
 # Other
 .DS_Store
 *.log
+
+
+# Ignore model files
+*.keras
+*.h5
+*.pb
+# *.onnx
+*.tflite
+
+# Ignore checkpoints and saved models
+checkpoints/
+results/*_SavedModel/
+__pycache__/
+*.log
