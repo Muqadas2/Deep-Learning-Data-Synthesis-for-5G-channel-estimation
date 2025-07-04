@@ -1,0 +1,28 @@
+
+--- Training Run: 2025-07-04 22:45:17 ---
+Model: CNN_OptimC_3_NoSkip
+Epochs: 40
+Learning Rate: 0.001
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.088646
+Val Loss: 0.041053
+Early Stopping Triggered: Yes
+Total Trainable Parameters: 541
+Avg Inference Time per Sample: 0.028021 sec
+Model Saved At: results\CNN_OptimC_3_NoSkip\CNN_OptimC_3_NoSkip_model.keras
+--------------------------------------------------
+
+--- Training Run: 2025-07-04 22:46:42 ---
+Model: CNN_OptimC_3_NoSkip
+Epochs: 40
+Learning Rate: 0.001
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.089657
+Val Loss: 0.047615
+Early Stopping Triggered: Yes
+Total Trainable Parameters: 541
+Avg Inference Time per Sample: 0.016997 sec
+Model Saved At: results\CNN_OptimC_3_NoSkip\CNN_OptimC_3_NoSkip_model.keras
+--------------------------------------------------

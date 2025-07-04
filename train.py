@@ -6,6 +6,19 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 from datetime import datetime
 
+# from tensorflow.keras.saving import register_keras_serializable
+
+
+# @register_keras_serializable()
+# def nmse_loss(y_true, y_pred):
+#     """
+#     Computes Normalized Mean Squared Error (NMSE)
+#     """
+#     numerator = tf.reduce_sum(tf.square(y_true - y_pred), axis=[1, 2, 3])
+#     denominator = tf.reduce_sum(tf.square(y_true), axis=[1, 2, 3])
+#     return tf.reduce_mean(numerator / (denominator + 1e-8))  # avoid divide-by-zero
+
+
 def train(model,model_name, train_dataset, val_dataset=None, epochs=10, lr=3e-4, patience=5, val_freq=1,
              avg_time_per_sample=None, total_params=None):
 
@@ -14,7 +27,7 @@ def train(model,model_name, train_dataset, val_dataset=None, epochs=10, lr=3e-4,
 
     model.compile(
         optimizer=tf.keras.optimizers.Adam(learning_rate=lr),
-        loss=tf.keras.losses.MeanSquaredError(),
+        loss="mse",
         metrics=[tf.keras.metrics.MeanAbsoluteError()]
     )
 

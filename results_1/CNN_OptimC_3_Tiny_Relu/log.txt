@@ -1,0 +1,28 @@
+
+--- Training Run: 2025-07-04 22:32:57 ---
+Model: CNN_OptimC_3_Tiny_Relu
+Epochs: 40
+Learning Rate: 0.001
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.088963
+Val Loss: 0.043814
+Early Stopping Triggered: Yes
+Total Trainable Parameters: 163
+Avg Inference Time per Sample: 0.021051 sec
+Model Saved At: results\CNN_OptimC_3_Tiny_Relu\CNN_OptimC_3_Tiny_Relu_model.keras
+--------------------------------------------------
+
+--- Training Run: 2025-07-04 22:43:06 ---
+Model: CNN_OptimC_3_Tiny_Relu
+Epochs: 40
+Learning Rate: 0.001
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.099760
+Val Loss: 0.071839
+Early Stopping Triggered: Yes
+Total Trainable Parameters: 163
+Avg Inference Time per Sample: 0.063193 sec
+Model Saved At: results\CNN_OptimC_3_Tiny_Relu\CNN_OptimC_3_Tiny_Relu_model.keras
+--------------------------------------------------

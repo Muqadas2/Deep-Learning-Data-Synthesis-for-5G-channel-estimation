@@ -1,0 +1,14 @@
+
+--- Training Run: 2025-07-05 03:28:20 ---
+Model: CNN_OptimC_3
+Epochs: 40
+Learning Rate: 0.001
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.098572
+Val Loss: 0.048412
+Early Stopping Triggered: Yes
+Total Trainable Parameters: 541
+Avg Inference Time per Sample: 0.019976 sec
+Model Saved At: results\CNN_OptimC_3\CNN_OptimC_3_model.keras
+--------------------------------------------------

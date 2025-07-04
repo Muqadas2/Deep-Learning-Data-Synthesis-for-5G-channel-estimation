@@ -10,7 +10,7 @@ def get_config(name):
             "val_freq": 1
         },
         "optim": {
-            "epochs": 20,
+            "epochs": 40,
             "lr": 1e-3,
             "batch_size": 8,
             "patience": 5,

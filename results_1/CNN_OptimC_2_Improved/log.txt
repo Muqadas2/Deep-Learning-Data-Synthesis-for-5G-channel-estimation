@@ -1,0 +1,98 @@
+
+--- Training Run: 2025-07-04 21:39:29 ---
+Model: CNN_OptimC_2_Improved
+Epochs: 20
+Learning Rate: 0.001
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.084594
+Val Loss: 0.051553
+Early Stopping Triggered: No
+Total Trainable Parameters: 471
+Avg Inference Time per Sample: 0.512396 sec
+Model Saved At: results\CNN_OptimC_2_Improved\CNN_OptimC_2_Improved_model.keras
+--------------------------------------------------
+
+--- Training Run: 2025-07-04 21:45:05 ---
+Model: CNN_OptimC_2_Improved
+Epochs: 20
+Learning Rate: 0.001
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.042427
+Val Loss: 0.038496
+Early Stopping Triggered: No
+Total Trainable Parameters: 543
+Avg Inference Time per Sample: 0.061733 sec
+Model Saved At: results\CNN_OptimC_2_Improved\CNN_OptimC_2_Improved_model.keras
+--------------------------------------------------
+
+--- Training Run: 2025-07-04 21:53:08 ---
+Model: CNN_OptimC_2_Improved
+Epochs: 20
+Learning Rate: 0.001
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.077033
+Val Loss: 0.080603
+Early Stopping Triggered: Yes
+Total Trainable Parameters: 133
+Avg Inference Time per Sample: 0.078385 sec
+Model Saved At: results\CNN_OptimC_2_Improved\CNN_OptimC_2_Improved_model.keras
+--------------------------------------------------
+
+--- Training Run: 2025-07-04 21:55:55 ---
+Model: CNN_OptimC_2_Improved
+Epochs: 20
+Learning Rate: 0.001
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.120047
+Val Loss: 0.075113
+Early Stopping Triggered: Yes
+Total Trainable Parameters: 131
+Avg Inference Time per Sample: 0.079713 sec
+Model Saved At: results\CNN_OptimC_2_Improved\CNN_OptimC_2_Improved_model.keras
+--------------------------------------------------
+
+--- Training Run: 2025-07-04 22:02:00 ---
+Model: CNN_OptimC_2_Improved
+Epochs: 20
+Learning Rate: 0.001
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.098266
+Val Loss: 0.044655
+Early Stopping Triggered: No
+Total Trainable Parameters: 165
+Avg Inference Time per Sample: 0.087074 sec
+Model Saved At: results\CNN_OptimC_2_Improved\CNN_OptimC_2_Improved_model.keras
+--------------------------------------------------
+
+--- Training Run: 2025-07-04 22:12:55 ---
+Model: CNN_OptimC_2_Improved
+Epochs: 20
+Learning Rate: 0.001
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.085634
+Val Loss: 0.061318
+Early Stopping Triggered: Yes
+Total Trainable Parameters: 165
+Avg Inference Time per Sample: 0.090285 sec
+Model Saved At: results\CNN_OptimC_2_Improved\CNN_OptimC_2_Improved_model.keras
+--------------------------------------------------
+
+--- Training Run: 2025-07-04 22:17:58 ---
+Model: CNN_OptimC_2_Improved
+Epochs: 20
+Learning Rate: 0.001
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.097581
+Val Loss: 0.049370
+Early Stopping Triggered: No
+Total Trainable Parameters: 163
+Avg Inference Time per Sample: 0.071112 sec
+Model Saved At: results\CNN_OptimC_2_Improved\CNN_OptimC_2_Improved_model.keras
+--------------------------------------------------

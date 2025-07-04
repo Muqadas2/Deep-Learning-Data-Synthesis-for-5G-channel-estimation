@@ -6,25 +6,19 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 import csv
 from datetime import datetime
-from models.all_models import CNN_Original, CNN_Optim, CNN_Merged, CNN_Depthwise, \
-                                  CNN_OptimDilation, CNN_OptimA, CNN_OptimB, CNN_OptimC, CNN_OptimC_Depthwise, CNN_OptimC_Depthwise_ResMix, CNN_OptimC_2, Hybrid_CNN_Transformer_TF
+from models.top_models import CNN_Original, CNN_Merged, CNN_OptimC_2, CNN_OptimC_2_Improved, CNN_OptimC_3, CNN_OptimC_3_Tiny_Relu, CNN_OptimC_2_WithDenoiser, CNN_OptimC_2_WithDenoiser_PostRefined
 
 # List of model classes
 all_model_classes = [
-    CNN_Original,
-    CNN_Optim,
-    CNN_Merged,
-    CNN_Depthwise,
-    CNN_OptimDilation,
-    CNN_OptimA,
-    CNN_OptimB,
-    CNN_OptimC,
-    CNN_OptimC_Depthwise,
-    CNN_OptimC_Depthwise_ResMix,
+    CNN_OptimC_3,
     CNN_OptimC_2,
-    Hybrid_CNN_Transformer_TF,
-    # Lightweight_DNN_CIR
-]
+    CNN_OptimC_2_Improved,
+    CNN_Original,
+    CNN_Merged,
+    CNN_OptimC_3_Tiny_Relu,
+    CNN_OptimC_2_WithDenoiser,
+    CNN_OptimC_2_WithDenoiser_PostRefined,
+    ]
 
 # Load test data
 val_data = np.load("data/tf_testData.npy")

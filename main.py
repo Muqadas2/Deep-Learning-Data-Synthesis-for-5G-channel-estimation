@@ -6,26 +6,20 @@ import tensorflow as tf
 from dataset import load_channel_dataset
 from train import train
 from training_configs import get_config
-from models.all_models import CNN_Original, CNN_Optim, CNN_Merged, CNN_Depthwise, \
-                                  CNN_OptimDilation, CNN_OptimA, CNN_OptimB, CNN_OptimC, \
-                                  CNN_OptimC_Depthwise, CNN_OptimC_Depthwise_ResMix, CNN_OptimC_2, Hybrid_CNN_Transformer_TF, Paper_Lightweight_DNN_CIR_FixedInput
+from models.top_models import CNN_OptimC_3_Tiny_Relu,CNN_OptimC_2,CNN_OptimC_2_Improved, CNN_OptimC_3,CNN_Original, CNN_OptimC_2_WithDenoiser, CNN_OptimC_2_WithDenoiser_PostRefined
+import tensorflow as tf
+tf.keras.backend.clear_session()
 
 # List of model classes
-all_model_classes = [
-    # CNN_Original,
-    # CNN_Optim,
-    # CNN_Merged,
-    # CNN_Depthwise,
-    # CNN_OptimDilation,
-    # CNN_OptimA,
-    # CNN_OptimB,
-    # CNN_OptimC,
-    # CNN_OptimC_Depthwise,
-    # CNN_OptimC_Depthwise_ResMix,
-    # CNN_OptimC_2,
-    # Hybrid_CNN_Transformer_TF,
-    Paper_Lightweight_DNN_CIR_FixedInput
-]
+all_model_classes = [ 
+    CNN_OptimC_2,
+    CNN_OptimC_2_Improved,
+    CNN_OptimC_3_Tiny_Relu,
+    CNN_OptimC_3,  
+    CNN_OptimC_2_WithDenoiser,
+    CNN_OptimC_2_WithDenoiser_PostRefined,
+    CNN_Original,
+    ]
 
 # Load data
 train_dataset = load_channel_dataset("data/tf_trainData.npy", "data/tf_trainLabels.npy", batch_size=8, shuffle=True)

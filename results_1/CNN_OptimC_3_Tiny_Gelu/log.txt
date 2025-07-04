@@ -1,0 +1,14 @@
+
+--- Training Run: 2025-07-04 22:30:38 ---
+Model: CNN_OptimC_3_Tiny_Gelu
+Epochs: 40
+Learning Rate: 0.001
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.104710
+Val Loss: 0.056423
+Early Stopping Triggered: Yes
+Total Trainable Parameters: 163
+Avg Inference Time per Sample: 0.031024 sec
+Model Saved At: results\CNN_OptimC_3_Tiny_Gelu\CNN_OptimC_3_Tiny_Gelu_model.keras
+--------------------------------------------------

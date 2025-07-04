@@ -1,0 +1,14 @@
+
+--- Training Run: 2025-07-05 03:39:16 ---
+Model: CNN_OptimC_2_WithDenoiser_PostRefined
+Epochs: 40
+Learning Rate: 0.001
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.030485
+Val Loss: 0.029576
+Early Stopping Triggered: Yes
+Total Trainable Parameters: 666
+Avg Inference Time per Sample: 0.069672 sec
+Model Saved At: results\CNN_OptimC_2_WithDenoiser_PostRefined\CNN_OptimC_2_WithDenoiser_PostRefined_model.keras
+--------------------------------------------------

@@ -1,14 +1,14 @@
 
---- Training Run: 2025-06-23 18:08:57 ---
+--- Training Run: 2025-07-05 03:39:42 ---
 Model: CNN_Original
 Epochs: 10
 Learning Rate: 0.0003
 Patience: 5
 Validation Frequency: 1
-Train Loss: 0.041149
-Val Loss: 0.036916
+Train Loss: 0.075295
+Val Loss: 0.039010
 Early Stopping Triggered: No
 Total Trainable Parameters: 745
-Avg Inference Time per Sample: 0.038056 sec
+Avg Inference Time per Sample: 0.015250 sec
 Model Saved At: results\CNN_Original\CNN_Original_model.keras
 --------------------------------------------------

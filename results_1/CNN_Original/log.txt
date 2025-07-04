@@ -1,0 +1,56 @@
+
+--- Training Run: 2025-06-23 18:08:57 ---
+Model: CNN_Original
+Epochs: 10
+Learning Rate: 0.0003
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.041149
+Val Loss: 0.036916
+Early Stopping Triggered: No
+Total Trainable Parameters: 745
+Avg Inference Time per Sample: 0.038056 sec
+Model Saved At: results\CNN_Original\CNN_Original_model.keras
+--------------------------------------------------
+
+--- Training Run: 2025-07-04 22:58:05 ---
+Model: CNN_Original
+Epochs: 10
+Learning Rate: 0.0003
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.032062
+Val Loss: 0.035062
+Early Stopping Triggered: No
+Total Trainable Parameters: 745
+Avg Inference Time per Sample: 0.054880 sec
+Model Saved At: results\CNN_Original\CNN_Original_model.keras
+--------------------------------------------------
+
+--- Training Run: 2025-07-04 22:59:28 ---
+Model: CNN_Original
+Epochs: 10
+Learning Rate: 0.0003
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.075796
+Val Loss: 0.037030
+Early Stopping Triggered: No
+Total Trainable Parameters: 745
+Avg Inference Time per Sample: 0.050833 sec
+Model Saved At: results\CNN_Original\CNN_Original_model.keras
+--------------------------------------------------
+
+--- Training Run: 2025-07-04 23:03:15 ---
+Model: CNN_Original
+Epochs: 10
+Learning Rate: 0.0003
+Patience: 5
+Validation Frequency: 1
+Train Loss: 0.035736
+Val Loss: 0.033780
+Early Stopping Triggered: No
+Total Trainable Parameters: 745
+Avg Inference Time per Sample: 0.030651 sec
+Model Saved At: results\CNN_Original\CNN_Original_model.keras
+--------------------------------------------------
