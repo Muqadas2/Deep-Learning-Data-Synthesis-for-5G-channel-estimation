@@ -8,7 +8,7 @@ from train import train
 from training_configs import get_config
 from models.all_models import CNN_Original, CNN_Optim, CNN_Merged, CNN_Depthwise, \
                                   CNN_OptimDilation, CNN_OptimA, CNN_OptimB, CNN_OptimC, \
-                                  CNN_OptimC_Depthwise, CNN_OptimC_Depthwise_ResMix, CNN_OptimC_2, Hybrid_CNN_Transformer_TF
+                                  CNN_OptimC_Depthwise, CNN_OptimC_Depthwise_ResMix, CNN_OptimC_2, Hybrid_CNN_Transformer_TF, Paper_Lightweight_DNN_CIR_FixedInput
 
 # List of model classes
 all_model_classes = [
@@ -23,7 +23,8 @@ all_model_classes = [
     # CNN_OptimC_Depthwise,
     # CNN_OptimC_Depthwise_ResMix,
     # CNN_OptimC_2,
-    Hybrid_CNN_Transformer_TF
+    # Hybrid_CNN_Transformer_TF,
+    Paper_Lightweight_DNN_CIR_FixedInput
 ]
 
 # Load data

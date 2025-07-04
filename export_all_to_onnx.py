@@ -32,9 +32,12 @@ for model_folder in os.listdir(results_dir):
         # Load model
         model = tf.keras.models.load_model(keras_model_path)
 
-        # Set correct input shape
+        # Set input shape with dynamic batch size
         input_shape = model_input_shapes.get(model_name, default_input_shape)
-        inputs = tf.keras.Input(shape=input_shape[1:], name="input")
+        dynamic_input_shape = [None] + list(input_shape[1:])  # Replace batch size with None
+
+        inputs = tf.keras.Input(shape=dynamic_input_shape[1:], name="input")
+
 
         # If it's Sequential, wrap it
         if isinstance(model, tf.keras.Sequential):
@@ -42,7 +45,8 @@ for model_folder in os.listdir(results_dir):
             model = tf.keras.Model(inputs=inputs, outputs=outputs, name=model.name)
 
         # Convert to ONNX
-        spec = (tf.TensorSpec(input_shape, tf.float32, name="input"),)
+        spec = (tf.TensorSpec(shape=dynamic_input_shape, dtype=tf.float32, name="input"),)
+
         model_proto, _ = tf2onnx.convert.from_keras(
             model,
             input_signature=spec,

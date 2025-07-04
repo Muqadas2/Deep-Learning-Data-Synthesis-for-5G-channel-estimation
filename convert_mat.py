@@ -4,7 +4,7 @@ import os
 
 # Set the directory path
 # data_dir = r"C:\channel-est-dl\data\delayProfile\TDL-E"
-data_dir = r"C:\channel-est-dl\data\snr\snr 8 10"
+data_dir = r"C:\channel-est-dl\data"
 
 # Load files with full path
 train_data_mat = loadmat(os.path.join(data_dir, "my_trainData.mat"))["trainData"]

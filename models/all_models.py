@@ -175,3 +175,29 @@ def CNN_OptimC_Depthwise_ResMix():
     x = depthwise_block(2, 4)(x)
     output_layer = layers.Conv2D(1, 1)(x)
     return tf.keras.Model(inputs=input_layer, outputs=output_layer)
+
+
+import tensorflow as tf
+from tensorflow.keras import layers, Model
+
+def Paper_Lightweight_DNN_CIR_FixedInput():
+    # Input: (612, 14, 1)
+    input_layer = layers.Input(shape=(612, 14, 1))
+
+    # Flatten to match DNN structure
+    x = layers.Flatten()(input_layer)  # shape (612*14, )
+
+    # Determine Q = 2^floor(log2(N))
+    N = 612 * 14  # 8568
+    Q = 2 ** ((N).bit_length() - 1)  # 8192, but too large; we will use a smaller Q
+    Q = 512  # practical lightweight
+
+    # Single hidden layer with tanh (as in paper)
+    x = layers.Dense(Q, activation='tanh', name="Hidden_tanh")(x)
+    # Output layer matching flattened input shape with linear activation
+    x = layers.Dense(N, activation='linear', name="Output_linear")(x)
+    # Reshape back to (612, 14, 1)
+    output_layer = layers.Reshape((612, 14, 1))(x)
+    return Model(inputs=input_layer, outputs=output_layer, name="Paper_Lightweight_DNN_CIR_FixedInput")
+
+
