@@ -1,0 +1,13 @@
+Timestamp,Model,Average MSE,NMSE,NMSE (dB),Total Samples,Batch Inference Time (s),Avg Time per Sample (s),Single Sample Inference Time (s),Histogram Path,Parameters,Size (MB),FLOPs
+2025-07-05 13:46:32,CNN_OptimDilation,0.05968159,0.08350906,-10.7827,8,1.659023,0.207378,0.002216,/home/embedaiot/int8_results_new/mse_histogram_CNN_OptimDilation.png,365,0.04,730
+2025-07-05 13:46:33,CNN_Original,0.03648234,0.05104767,-12.9202,8,0.070065,0.008758,0.00459,/home/embedaiot/int8_results_new/mse_histogram_CNN_Original.png,753,0.04,1506
+2025-07-05 13:46:35,CNN_OptimB,0.05216689,0.07299416,-11.3671,8,0.031144,0.003893,0.001614,/home/embedaiot/int8_results_new/mse_histogram_CNN_OptimB.png,219,0.04,438
+2025-07-05 13:46:36,CNN_OptimC_Depthwise_ResMix,0.10783702,0.15089022,-8.2134,8,0.012154,0.001519,0.007142,/home/embedaiot/int8_results_new/mse_histogram_CNN_OptimC_Depthwise_ResMix.png,119,0.04,238
+2025-07-05 13:46:38,CNN_OptimC_2,0.04522753,0.06328431,-11.987,8,0.00517,0.000646,0.00317,/home/embedaiot/int8_results_new/mse_histogram_CNN_OptimC_2.png,159,0.08,318
+2025-07-05 13:46:39,CNN_OptimC_Depthwise,0.05157147,0.07216104,-11.417,8,0.007472,0.000934,0.002082,/home/embedaiot/int8_results_new/mse_histogram_CNN_OptimC_Depthwise.png,101,0.05,202
+2025-07-05 13:46:41,CNN_Merged,0.04374897,0.06121546,-12.1314,8,0.010082,0.00126,0.001713,/home/embedaiot/int8_results_new/mse_histogram_CNN_Merged.png,1865,0.04,3730
+2025-07-05 13:46:42,CNN_OptimA,0.04816028,0.06738796,-11.7142,8,0.007407,0.000926,0.001606,/home/embedaiot/int8_results_new/mse_histogram_CNN_OptimA.png,365,0.04,730
+2025-07-05 13:46:44,CNN_Optim,0.05034126,0.07043968,-11.5218,8,0.005223,0.000653,0.00181,/home/embedaiot/int8_results_new/mse_histogram_CNN_Optim.png,513,0.04,1026
+2025-07-05 13:46:45,CNN_OptimC,0.05026484,0.07033274,-11.5284,8,0.006821,0.000853,0.001805,/home/embedaiot/int8_results_new/mse_histogram_CNN_OptimC.png,159,0.03,318
+2025-07-05 13:46:47,CNN_OptimC_optim,0.6064955,0.84863466,-0.7128,8,0.008676,0.001085,0.001539,/home/embedaiot/int8_results_new/mse_histogram_CNN_OptimC_optim.png,4937,0.07,9874
+2025-07-05 13:46:48,CNN_Depthwise,0.1292775,0.18089066,-7.4258,8,0.007082,0.000885,0.001752,/home/embedaiot/int8_results_new/mse_histogram_CNN_Depthwise.png,243,0.06,486

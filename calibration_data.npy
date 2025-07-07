@@ -1,0 +1,12 @@
+#calibration data 
+# to perform model quntization 
+# fp16-->int8
+# calibration_data.py
+
+
+import numpy as np
+
+val_data = np.load("/home/embedaiot/data_files/tf_valData.npy").astype(np.float32)
+calib_subset = val_data[:100]
+np.save("calib_data.npy", calib_subset)
+

@@ -1,0 +1,37 @@
+TRT-8401-EntropyCalibration2
+input: 3d5b6231
+sequential_11_1/sequential_11_1/sequential_7_1/depthwise_conv2d_1/depthwise__6:0: 3d5b6231
+Conv__54:0: 3cf5d113
+sequential_11_1/sequential_11_1/sequential_7_1/re_lu_10_1/Relu:0: 3cf5d113
+sequential_11_1/sequential_11_1/sequential_7_1/conv2d_13_1/BiasAdd:0: 3c5f8a8a
+(Unnamed Layer* 5) [Constant]_output: 3df1ebd4
+sequential_11_1/sequential_11_1/sequential_7_1/batch_normalization_4_1/batchnorm/mul_1:0: 3d244bbd
+(Unnamed Layer* 7) [Constant]_output: 3c47a85d
+sequential_11_1/sequential_11_1/sequential_7_1/batch_normalization_4_1/batchnorm/add_1:0: 3c41b3f7
+sequential_11_1/sequential_11_1/sequential_7_1/re_lu_11_1/Relu:0: 3c41a132
+Conv__64:0: 3c1e4af9
+sequential_11_1/sequential_11_1/sequential_8_1/re_lu_12_1/Relu:0: 3bff6865
+sequential_11_1/sequential_11_1/sequential_8_1/conv2d_14_1/BiasAdd:0: 3bc0abb8
+(Unnamed Layer* 13) [Constant]_output: 3d35441a
+sequential_11_1/sequential_11_1/sequential_8_1/batch_normalization_5_1/batchnorm/mul_1:0: 3ca84e3c
+(Unnamed Layer* 15) [Constant]_output: 3c2ce33f
+sequential_11_1/sequential_11_1/sequential_8_1/batch_normalization_5_1/batchnorm/add_1:0: 3c3b5038
+sequential_11_1/sequential_11_1/sequential_8_1/re_lu_13_1/Relu:0: 3c1aee4c
+Conv__74:0: 3a8b61ec
+sequential_11_1/sequential_11_1/sequential_9_1/re_lu_14_1/Relu:0: 3a8b61ec
+sequential_11_1/sequential_11_1/sequential_9_1/conv2d_15_1/BiasAdd:0: 3adbf2d5
+(Unnamed Layer* 21) [Constant]_output: 3dc424a0
+sequential_11_1/sequential_11_1/sequential_9_1/batch_normalization_6_1/batchnorm/mul_1:0: 3d50fff0
+(Unnamed Layer* 23) [Constant]_output: 3c4eeff0
+sequential_11_1/sequential_11_1/sequential_9_1/batch_normalization_6_1/batchnorm/add_1:0: 3c385da8
+sequential_11_1/sequential_11_1/sequential_9_1/re_lu_15_1/Relu:0: 3c37b4da
+Conv__84:0: 3c4dea54
+sequential_11_1/sequential_11_1/sequential_10_1/re_lu_16_1/Relu:0: 3c4dea54
+sequential_11_1/sequential_11_1/sequential_10_1/conv2d_16_1/BiasAdd:0: 3c05a92e
+(Unnamed Layer* 29) [Constant]_output: 3d58e169
+sequential_11_1/sequential_11_1/sequential_10_1/batch_normalization_7_1/batchnorm/mul_1:0: 3ca6f4e0
+(Unnamed Layer* 31) [Constant]_output: 3bf38656
+sequential_11_1/sequential_11_1/sequential_10_1/batch_normalization_7_1/batchnorm/add_1:0: 3c75aa94
+sequential_11_1/sequential_11_1/sequential_10_1/re_lu_17_1/Relu:0: 3c75aa94
+Conv__94:0: 3c11f45a
+sequential_11: 3c11f45a
